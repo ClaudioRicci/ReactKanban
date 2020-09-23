@@ -15,28 +15,22 @@ interface IListProps {
   onAdd: any;
 }
 
-export default class List extends React.Component<IListProps, {}> {
-  constructor(props: any) {
-    super(props);
-  }
+export default function List(props: IListProps) {
+  const cards = props.cards.map((card: any, index: number) => (
+    <li key={index}>
+      <TaskCard {...card} onDragStart={props.onDragStart} />
+    </li>
+  ));
 
-  render() {
-    const cards = this.props.cards.map((card: any, index: number) => (
-      <li key={index}>
-        <TaskCard {...card} onDragStart={this.props.onDragStart} />
-      </li>
-    ));
-
-    return (
-      <>
-        <H2Tag>{this.props.title}</H2Tag>
-        <ULTag onDragOver={this.props.onDragOver} onDrop={this.props.onDrop}>
-          {cards}
-          <LITag>
-            <AddTaskForm formNum={this.props.id} onAdd={this.props.onAdd} />
-          </LITag>
-        </ULTag>
-      </>
-    );
-  }
+  return (
+    <>
+      <H2Tag>{props.title}</H2Tag>
+      <ULTag onDragOver={props.onDragOver} onDrop={props.onDrop}>
+        {cards}
+        <LITag>
+          <AddTaskForm formNum={props.id} onAdd={props.onAdd} />
+        </LITag>
+      </ULTag>
+    </>
+  );
 }

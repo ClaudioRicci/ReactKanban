@@ -28,7 +28,6 @@ export default class Board extends Component<{}, IBoardState> {
       taskId: e.currentTarget.id,
       fromList: fromList
     };
-
     localStorage.setItem("dragInfo", JSON.stringify(dragInfo));
   };
 
@@ -69,7 +68,6 @@ export default class Board extends Component<{}, IBoardState> {
   addTaskCard(taskText: string, listNumber: number) {
     const rawLS: any = localStorage.getItem("lists");
     const parsedLS = JSON.parse(rawLS);
-
     const newTask = {
       taskText,
       listNumber,

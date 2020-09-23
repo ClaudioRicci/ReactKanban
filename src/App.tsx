@@ -1,7 +1,6 @@
 import React from "react";
-import { H1Tag, H2Tag, H3Tag, PTag } from "./components/typography";
-// import { Board } from "./components/board";
-import Board from "./components/board/index";
+import { H1Tag, H2Tag, H3Tag } from "./components/typography";
+import Board from "./components/board";
 
 const KanbanBoard = () => {
   return (
