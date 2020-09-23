@@ -1,3 +1,6 @@
+.board {
+  margin: 1rem;
+}
 .lists {
   display: flex;
   flex-direction: row;

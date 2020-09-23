@@ -26,7 +26,7 @@ interface IBoardState {
 export default class Board extends Component<{}, IBoardState> {
   constructor(props: any) {
     super(props);
-    //if there's a localStorage to be had grab it otherwise set state
+    //Check if items in Local Storage selse setState
     if (localStorage.getItem("lists")) {
       const rawLS: any = localStorage.getItem("lists");
       const parsedLS = JSON.parse(rawLS);

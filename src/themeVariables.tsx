@@ -1,8 +1,8 @@
 export const colors = {
   black: "#000",
   white: "#FFF",
-  primary: "#CF0",
-  secondary: "#000080",
+  primary: "#004A8F",
+  secondary: "#ED1C24",
   ternary: "#CCC"
 };
 

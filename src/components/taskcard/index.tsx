@@ -6,7 +6,7 @@ interface ITaskCardProps {
   timeId: string;
   taskTitle: string;
   taskDescription: string;
-  taskComments: string;
+  taskComment: string;
   onDragStart: any;
 }
 
@@ -26,7 +26,7 @@ const TaskCard: React.SFC<ITaskCardProps> = props => {
         </span>
         <span>
           <H4Tag>Comments: </H4Tag>
-          <PTag>{props.taskComments}</PTag>
+          <PTag>{props.taskComment}</PTag>
         </span>
       </div>
     </div>
