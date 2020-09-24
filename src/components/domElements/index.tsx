@@ -14,8 +14,15 @@ export const LITag = styled.li`
 export const TextInputTag = styled.input`
   margin: 0.5rem;
   padding: 0.5rem;
+  width: 90%;
 `;
 
 export const LabelTag = styled.label`
   margin: 0.5rem;
+`;
+
+export const TextAreaTag = styled.textarea`
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 90%;
 `;

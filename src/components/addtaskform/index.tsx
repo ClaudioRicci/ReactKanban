@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles/addtaskform.css";
 import { AnchorTag } from "../typography";
-import { TextInputTag, LabelTag } from "../domElements";
+import { LabelTag, TextInputTag, TextAreaTag } from "../domElements";
 import { AddButton, CancelButton } from "../buttons";
 
 interface IAddTaskFormProps {
@@ -35,7 +35,7 @@ export default function AddTaskForm(props: IAddTaskFormProps) {
   return (
     <form className="card add-task-form" onSubmit={e => onSubmit(e)}>
       <div className="inputSurround">
-        <LabelTag htmlFor="taskTitle">Add Title</LabelTag>
+        <LabelTag htmlFor="taskTitle">Add Title:</LabelTag>
         <TextInputTag
           type="text"
           //    ref={input => (textInput = input)}
@@ -43,6 +43,23 @@ export default function AddTaskForm(props: IAddTaskFormProps) {
           id="taskTitle"
         />
       </div>
+      <div className="inputSurround">
+        <LabelTag htmlFor="taskDescription">Add Description:</LabelTag>
+        <TextAreaTag
+          //    ref={input => (textInput = input)}
+          aria-label="Add a task description"
+          id="taskDescription"
+        />
+      </div>
+      <div className="inputSurround">
+        <LabelTag htmlFor="taskComment">Add Comment:</LabelTag>
+        <TextAreaTag
+          //    ref={input => (textInput = input)}
+          aria-label="Add a task comment"
+          id="taskComment"
+        />
+      </div>
+
       {/* <TextInputTag
         type="text"
         //    ref={input => (textInput = input)}

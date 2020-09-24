@@ -1,7 +1,7 @@
 import React from "react";
 import TaskCard from "../taskcard";
 import AddTaskForm from "./../addtaskform";
-import "./styles/list.css";
+import "./styles/list.scss";
 import { H2Tag } from "../typography";
 import { ULTag, LITag } from "../domElements";
 
@@ -9,6 +9,7 @@ interface IListProps {
   id: number;
   cards: any;
   title: string;
+  columnName: string;
   onDragStart: any;
   onDragOver: any;
   onDrop: any;
@@ -24,7 +25,9 @@ export default function List(props: IListProps) {
 
   return (
     <>
-      <H2Tag>{props.title}</H2Tag>
+      <H2Tag className={`column-header column-${props.columnName}`}>
+        {props.title}
+      </H2Tag>
       <ULTag onDragOver={props.onDragOver} onDrop={props.onDrop}>
         {cards}
         <LITag>

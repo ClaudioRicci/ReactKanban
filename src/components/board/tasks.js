@@ -2,6 +2,7 @@ const defaultTasks = {
   lists: [
     {
       title: "Todo",
+      columnName: "to-do",
       id: 0,
       cards: [
         {
@@ -22,6 +23,7 @@ const defaultTasks = {
     },
     {
       title: "In Progress",
+      columnName: "in-progress",
       id: 1,
       cards: [
         {
@@ -42,6 +44,7 @@ const defaultTasks = {
     },
     {
       title: "In QA",
+      columnName: "in-qa",
       id: 2,
       cards: [
         {
@@ -62,6 +65,7 @@ const defaultTasks = {
     },
     {
       title: "Done",
+      columnName: "done",
       id: 3,
       cards: [
         {

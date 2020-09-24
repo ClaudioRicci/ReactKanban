@@ -9,8 +9,9 @@ export const H1Tag = styled.h1`
 
 export const H2Tag = styled.h2`
   font: 900 1.6em/2rem ${fonts.header};
-  color: ${colors.primary};
+  color: ${colors.black};
   text-align: ${align.center};
+  margin-bottom: 0.5rem;
 `;
 
 export const H3Tag = styled.h3`
