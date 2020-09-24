@@ -9,9 +9,9 @@ export const Button = styled.button`
   cursor: pointer;
   display: block;
   font: 900 1.4em/2rem ${fonts.paragraph};
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   outline: none;
-  padding: 1rem;
+  padding: 0.25rem 1rem;
   :hover {
     border: 0.1rem #f9b600 solid;
     color: ${colors.white};
@@ -28,9 +28,9 @@ export const AddButton = styled.button`
   cursor: pointer;
   display: block;
   font: 900 1.4em/2rem ${fonts.paragraph};
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   outline: none;
-  padding: 1rem;
+  padding: 0.25rem 1rem;
   :hover {
     border: 0.1rem #f9b600 solid;
     color: ${colors.white};
@@ -47,9 +47,9 @@ export const CancelButton = styled.button`
   cursor: pointer;
   display: block;
   font: 900 1.4em/2rem ${fonts.paragraph};
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   outline: none;
-  padding: 1rem;
+  padding: 0.25rem 1rem;
   :hover {
     border: 0.1rem #f9b600 solid;
     color: ${colors.white};

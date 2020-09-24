@@ -11,7 +11,7 @@ interface IBoardState {
 export default class Board extends Component<{}, IBoardState> {
   constructor(props: any) {
     super(props);
-    //if there's a localStorage to be had grab it otherwise set state
+    //if localStorage is avaialbe use that else set state
     if (localStorage.getItem("lists")) {
       const rawLS: any = localStorage.getItem("lists");
       const parsedLS = JSON.parse(rawLS);
@@ -22,7 +22,7 @@ export default class Board extends Component<{}, IBoardState> {
     }
   }
 
-  //get id of item being dragged and list where it's coming from
+  //Get the id of item being dragged and hold in Local Storage where it's coming from
   onDragStart = (e: any, fromList: any) => {
     const dragInfo = {
       taskId: e.currentTarget.id,
@@ -36,7 +36,7 @@ export default class Board extends Component<{}, IBoardState> {
   };
 
   onDrop = (e: any, listNum: any) => {
-    //get the dropped task card, the localStorage,
+    //get the dropped task card from localStorage
     const droppedTask: any = localStorage.getItem("dragInfo");
     const rawLS: any = localStorage.getItem("lists");
     const parsedLS = JSON.parse(rawLS);
@@ -46,10 +46,10 @@ export default class Board extends Component<{}, IBoardState> {
     // in the list where it was dropped
     const cardsArray = parsedLS[parsedDragInfo.fromList].cards;
     const taskCard = cardsArray.find(
-      (card: any) => card.timeId == parsedDragInfo.taskId
+      (card: any) => card.uniqueId == parsedDragInfo.taskId
     );
     const indexOfCard = cardsArray.findIndex(
-      (card: any) => card.timeId == parsedDragInfo.taskId
+      (card: any) => card.uniqueId == parsedDragInfo.taskId
     );
     parsedLS[parsedDragInfo.fromList].cards.splice(indexOfCard, 1);
     parsedLS[listNum].cards.push({
@@ -71,7 +71,7 @@ export default class Board extends Component<{}, IBoardState> {
     const newTask = {
       taskText,
       listNumber,
-      timeId: new Date().valueOf()
+      uniqueId: new Date().valueOf()
     };
 
     parsedLS[listNumber].cards.push(newTask);

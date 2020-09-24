@@ -32,6 +32,19 @@ export const PTag = styled.p`
   line-height: 1rem;
 `;
 
+export const PreTag = styled.pre`
+  font: 900 0.9em/0.9rem ${fonts.paragraph};
+  background: ${colors.primary};
+  color: ${colors.white};
+  line-height: 0.9rem;
+  padding: 0.25rem;
+  text-align: ${align.center};
+  width: 3.4rem;
+  border-radius: 1rem;
+  position: relative;
+  left: 12.6rem;
+`;
+
 export const AnchorTag = styled.a`
   font: 900 1.2em/2rem ${fonts.paragraph};
   color: ${colors.secondary};
