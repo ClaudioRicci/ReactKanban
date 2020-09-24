@@ -1,72 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/addtaskform.css";
+import { AnchorTag } from "../typography";
+import { LabelTag, TextInputTag, TextAreaTag } from "../domElements";
+import { AddButton, CancelButton } from "../buttons";
 
 interface IAddTaskFormProps {
   formNum: number;
   onAdd: any;
 }
 
-interface IAddTaskFormState {
-  editing: boolean;
-}
-
-export default class AddTaskForm extends React.Component<
-  IAddTaskFormProps,
-  IAddTaskFormState
-> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      editing: false
-    };
-  }
-
-  onSubmit(event: any) {
+export default function AddTaskForm(props: IAddTaskFormProps) {
+  const [editing, setEditing] = useState<boolean>(false);
+  const onSubmit = (event: any) => {
     event.preventDefault();
-    // const taskTitle = this.textInput.value.trim();
-    const listNumber = this.props.formNum;
+    // const taskTitle = textInput.value.trim();
+    const listNumber = props.formNum;
     console.log(listNumber);
     // if (taskTitle && this.props.onAdd) {
-    //   this.props.onAdd(taskTitle, listNumber);
+    //   props.onAdd(taskTitle, listNumber);
     // }
-    // this.textInput.value = "";
-  }
+    // textInput.value = "";
+  };
 
-  setEditing(editing: boolean) {
-    this.setState({
-      editing
-    });
-  }
-
-  render() {
-    if (!this.state.editing) {
-      return (
-        <div className="open-add-button" onClick={() => this.setEditing(true)}>
-          <a href="#" title="Add a task">
-            Add a task!
-          </a>
-        </div>
-      );
-    }
+  if (!editing) {
     return (
-      <form className="card add-task-form" onSubmit={e => this.onSubmit(e)}>
-        {/* <input
-          type="text"
-          class="task-input"
-          ref={input => (this.textInput = input)}
-          aria-label="Add a task"
-          id="taskInput"
-        /> */}
-        <div>
-          <button className="button add-button">Add Task</button>
-          <button
-            className="button cancel-button"
-            onClick={() => this.setEditing(false)}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+      <div className="open-add-button" onClick={() => setEditing(true)}>
+        <AnchorTag href="#" title="Add a task">
+          Add a task +
+        </AnchorTag>
+      </div>
     );
   }
+
+  return (
+    <form className="card add-task-form" onSubmit={e => onSubmit(e)}>
+      <div className="inputSurround">
+        <LabelTag htmlFor="taskTitle">Add Title:</LabelTag>
+        <TextInputTag
+          type="text"
+          //    ref={input => (textInput = input)}
+          aria-label="Add a task title"
+          id="taskTitle"
+        />
+      </div>
+      <div className="inputSurround">
+        <LabelTag htmlFor="taskDescription">Add Description:</LabelTag>
+        <TextAreaTag
+          //    ref={input => (textInput = input)}
+          aria-label="Add a task description"
+          id="taskDescription"
+        />
+      </div>
+      <div className="inputSurround">
+        <LabelTag htmlFor="taskComment">Add Comment:</LabelTag>
+        <TextAreaTag
+          //    ref={input => (textInput = input)}
+          aria-label="Add a task comment"
+          id="taskComment"
+        />
+      </div>
+
+      {/* <TextInputTag
+        type="text"
+        //    ref={input => (textInput = input)}
+        aria-label="Add a task"
+        id="taskInput"
+      /> */}
+      {/* <input
+                type="text"
+                class="task-input"
+                ref={input => (this.textInput = input)}
+                aria-label="Add a task"
+                id="taskInput"
+              /> */}
+      <div className="buttons-surround">
+        <AddButton>Add Task</AddButton>
+        <CancelButton onClick={() => setEditing(false)}>Cancel</CancelButton>
+      </div>
+    </form>
+  );
 }

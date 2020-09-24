@@ -1,5 +1,5 @@
 .task-input {
-  background: #fafafa;
+  background: #e4e4e4;
   margin-bottom: 8px;
   padding: 8px;
   border-radius: 2px;
@@ -11,38 +11,6 @@
   font-size: 16px;
 }
 
-.button {
-  border-radius: 2px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.button:hover {
-  opacity: 0.85;
-  transition: 0.3s;
-}
-
-.add-button {
-  background-color: rgb(100, 149, 237);
-}
-
-.cancel-button {
-  background-color: rgb(255, 99, 71);
-}
-
-.open-add-button {
-  padding: 8px;
-  border-radius: 2px;
-}
-
-.open-add-button a {
-  text-decoration: none;
-}
-
-.list .open-add-button:hover {
-  background: #bdbdbd;
-}
-
-.list .open-add-button a {
-  color: black;
+.buttons-surround {
+  display: flex;
 }

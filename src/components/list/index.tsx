@@ -1,47 +1,39 @@
 import React from "react";
 import TaskCard from "../taskcard";
 import AddTaskForm from "./../addtaskform";
-import "./styles/list.css";
+import "./styles/list.scss";
 import { H2Tag } from "../typography";
+import { ULTag, LITag } from "../domElements";
 
 interface IListProps {
   id: number;
   cards: any;
   title: string;
+  columnName: string;
   onDragStart: any;
   onDragOver: any;
   onDrop: any;
   onAdd: any;
 }
 
-export default class List extends React.Component<IListProps, {}> {
-  constructor(props: any) {
-    super(props);
-  }
+export default function List(props: IListProps) {
+  const cards = props.cards.map((card: any, index: number) => (
+    <li key={index}>
+      <TaskCard {...card} onDragStart={props.onDragStart} />
+    </li>
+  ));
 
-  render() {
-    const cards = this.props.cards.map((card: any, index: number) => {
-      return (
-        <li key={index}>
-          <TaskCard {...card} onDragStart={this.props.onDragStart} />
-        </li>
-      );
-    });
-
-    return (
-      <div>
-        <H2Tag>{this.props.title}</H2Tag>
-        <ul
-          className="list"
-          onDragOver={this.props.onDragOver}
-          onDrop={this.props.onDrop}
-        >
-          {cards}
-          <li className="add-list-wrapper">
-            <AddTaskForm formNum={this.props.id} onAdd={this.props.onAdd} />
-          </li>
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <>
+      <H2Tag className={`column-header column-${props.columnName}`}>
+        {props.title}
+      </H2Tag>
+      <ULTag onDragOver={props.onDragOver} onDrop={props.onDrop}>
+        {cards}
+        <LITag>
+          <AddTaskForm formNum={props.id} onAdd={props.onAdd} />
+        </LITag>
+      </ULTag>
+    </>
+  );
 }

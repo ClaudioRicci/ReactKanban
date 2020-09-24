@@ -1,12 +1,12 @@
 import React from "react";
-import "./styles/taskcard.css";
-import { H3Tag, H4Tag, PTag } from "../typography";
+import "./styles/taskcard.scss";
+import { H3Tag, H4Tag, PTag, PreTag } from "../typography";
 
 interface ITaskCardProps {
-  timeId: string;
+  uniqueId: string;
   taskTitle: string;
   taskDescription: string;
-  taskComments: string;
+  taskComment: string;
   onDragStart: any;
 }
 
@@ -15,10 +15,11 @@ const TaskCard: React.SFC<ITaskCardProps> = props => {
     <div
       className="task-card"
       draggable="true"
-      id={props.timeId}
+      id={props.uniqueId}
       onDragStart={props.onDragStart}
     >
       <div className="task-card-inner-section">
+        <PreTag>NAT-{props.uniqueId}</PreTag>
         <H3Tag>{props.taskTitle}</H3Tag>
         <span>
           <H4Tag>Description: </H4Tag>
@@ -26,7 +27,7 @@ const TaskCard: React.SFC<ITaskCardProps> = props => {
         </span>
         <span>
           <H4Tag>Comments: </H4Tag>
-          <PTag>{props.taskComments}</PTag>
+          <PTag>{props.taskComment}</PTag>
         </span>
       </div>
     </div>
