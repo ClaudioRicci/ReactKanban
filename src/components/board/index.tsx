@@ -12,7 +12,7 @@ function Board() {
       </main>
     );
   } else {
-    return <p>Loading...</p>;
+    return <p>Loading..</p>;
   }
 }
 
