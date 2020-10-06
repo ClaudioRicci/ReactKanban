@@ -1,6 +1,6 @@
 import React from "react";
 import Board from "./components/board";
 
-const KanbanBoard = () => <Board />;
+const FundApps = () => <Board />;
 
-export default KanbanBoard;
+export default FundApps;

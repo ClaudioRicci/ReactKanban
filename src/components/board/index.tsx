@@ -1,112 +1,19 @@
-import React, { Component } from "react";
-import "./styles/board.css";
-import List from "../list";
-import defaultTasks from "./tasks";
-import { H1Tag } from "../typography";
+import React, { useState } from "react";
+import { pure } from "recompose";
 
-interface IBoardState {
-  lists: any;
-}
+function Board() {
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
-export default class Board extends Component<{}, IBoardState> {
-  constructor(props: any) {
-    super(props);
-    //if localStorage is avaialbe use that else set state
-    if (localStorage.getItem("lists")) {
-      const rawLS: any = localStorage.getItem("lists");
-      const parsedLS = JSON.parse(rawLS);
-      this.state = { lists: parsedLS };
-    } else {
-      this.state = defaultTasks;
-      localStorage.setItem("lists", JSON.stringify(this.state.lists));
-    }
-  }
-
-  //Get the id of item being dragged and hold in Local Storage where it's coming from
-  onDragStart = (e: any, fromList: any) => {
-    const dragInfo = {
-      taskId: e.currentTarget.id,
-      fromList: fromList
-    };
-    localStorage.setItem("dragInfo", JSON.stringify(dragInfo));
-  };
-
-  onDragOver = (e: any) => {
-    e.preventDefault();
-  };
-
-  onDrop = (e: any, listNum: any) => {
-    //get the dropped task card from localStorage
-    const droppedTask: any = localStorage.getItem("dragInfo");
-    const rawLS: any = localStorage.getItem("lists");
-    const parsedLS = JSON.parse(rawLS);
-    const parsedDragInfo = JSON.parse(droppedTask);
-
-    //get task cards array, get rid of moved card, and put a new card
-    // in the list where it was dropped
-    const cardsArray = parsedLS[parsedDragInfo.fromList].cards;
-    const taskCard = cardsArray.find(
-      (card: any) => card.uniqueId == parsedDragInfo.taskId
-    );
-    const indexOfCard = cardsArray.findIndex(
-      (card: any) => card.uniqueId == parsedDragInfo.taskId
-    );
-    parsedLS[parsedDragInfo.fromList].cards.splice(indexOfCard, 1);
-    parsedLS[listNum].cards.push({
-      ...taskCard,
-      listNumber: parseInt(listNum)
-    });
-
-    //Make sure the localStorage is synced to the Browser so tasks are maintined even if Browser refreshed
-    this.setState({
-      lists: parsedLS
-    });
-    localStorage.setItem("lists", JSON.stringify(parsedLS));
-  };
-
-  //add some new task cards
-  addTaskCard(taskText: string, listNumber: number) {
-    const rawLS: any = localStorage.getItem("lists");
-    const parsedLS = JSON.parse(rawLS);
-    const newTask = {
-      taskText,
-      listNumber,
-      uniqueId: new Date().valueOf()
-    };
-
-    parsedLS[listNumber].cards.push(newTask);
-
-    //sync state and localStorage
-    this.setState({
-      lists: parsedLS
-    });
-    localStorage.setItem("lists", JSON.stringify(parsedLS));
-  }
-
-  render() {
-    const lists = this.state.lists.map((list: any, index: number) => (
-      <li className="list-wrapper" key={index}>
-        <List
-          {...list}
-          onAdd={(taskText: string, listNumber: number) =>
-            this.addTaskCard(taskText, listNumber)
-          }
-          onDragStart={(e: any, fromList: any) =>
-            this.onDragStart(e, `${list.id}`)
-          }
-          onDragOver={(e: any) => this.onDragOver(e)}
-          onDrop={(e: any, listNum: any) => {
-            this.onDrop(e, `${list.id}`);
-          }}
-        />
-      </li>
-    ));
-
+  if (loaded) {
     return (
-      <div className="board">
-        <H1Tag>Nationwide Kanban board</H1Tag>
-        <ul className="lists">{lists}</ul>
-      </div>
+      <main className="selectSurround" data-testid="selectSurround">
+        <p>Loaded content here</p>
+      </main>
     );
+  } else {
+    return <p>Loading...</p>;
   }
 }
+
+export default pure(Board);
